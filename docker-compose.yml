@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-pedidos_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pedidos_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-pedidos_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-pedidos_user} -d ${POSTGRES_DB:-pedidos_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pedidos:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://pedidos_user:pedidos_pass@postgres:5432/pedidos_db}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
