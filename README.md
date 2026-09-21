@@ -15,7 +15,7 @@ Consiste em uma API RESTful para gerenciamento de pedidos construída em **FastA
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **Linguagem:** Python 3.12
+* **Linguagem:** Python 3.11
 * **Framework Web:** FastAPI
 * **ORM:** SQLAlchemy 2.0
 * **Validação de Dados:** Pydantic v2
@@ -38,8 +38,8 @@ A aplicação é autocontida e reprodutível. Para clonar o repositório, subir 
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
-cd SEU_REPOSITORIO
+git clone https://github.com/Jhonydev72/APIpedidos.git
+cd APIpedidos
 
 # 2. Acesse a branch da entrega (se aplicável)
 git checkout APIPedidos-1-final
